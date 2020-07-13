@@ -9,6 +9,7 @@ Creado por:
 
 #include <iostream>
 #include "bitmapfileheader.h"
+#include "bitmapinfoheader.h"
 using namespace std;
 
 int main() {
