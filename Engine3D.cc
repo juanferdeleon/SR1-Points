@@ -10,6 +10,8 @@ Creado por:
 #include <iostream>
 #include "bitmapfileheader.h"
 #include "bitmapinfoheader.h"
+#include "bitmap.h"
+
 using namespace std;
 
 int main() {

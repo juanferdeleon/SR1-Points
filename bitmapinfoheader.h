@@ -1,3 +1,14 @@
+/*
+        SR1 Points
+
+Creado por:
+
+    Juan Fernando De Leon Quezada   Carne 17822
+
+Bitmap Info Header
+
+*/
+
 #ifndef BITMAPINFOHEADER_H_
 #define BITMAPINFOHEADER_H_
 
