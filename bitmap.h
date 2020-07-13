@@ -14,6 +14,8 @@ Bitmap Class
 
 #include <string>
 #include <cstdint>
+#include <memory>
+
 using namespace std;
 
 class Bitmap {
@@ -21,6 +23,7 @@ class Bitmap {
     private:
         int _width{0};
         int _height{0};
+        unique_ptr<uint8_t[]> m_pPixels{nullptr};
 
     public:
         Bitmap(int width, int height);
