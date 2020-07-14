@@ -8,13 +8,22 @@ Creado por:
 */
 
 #include <iostream>
-#include "bitmapfileheader.h"
-#include "bitmapinfoheader.h"
 #include "bitmap.h"
 
 using namespace std;
 
 int main() {
-    cout<<"Hola Mundo"<<endl;
+
+    int const WIDTH = 800;
+    int const HEIGHT = 600;
+
+    Bitmap bitmap(WIDTH, HEIGHT);
+
+    bitmap.setPixel(WIDTH/2, HEIGHT/2, 255, 255, 255);
+
+    bitmap.write("test.bmp");
+
+    cout<<"Finished"<<endl;
+    
     return 0;
 }
