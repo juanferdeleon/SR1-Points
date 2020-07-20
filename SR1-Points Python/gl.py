@@ -41,6 +41,7 @@ class Bitmap(object):
         self.width = width
         self.frambufer = []
         self.clear_color = color(0, 0, 0)
+        self.vertex_color = color(255, 255, 0)
         self.glClear()
 
     def glInit(self):
@@ -97,11 +98,28 @@ class Bitmap(object):
                 if y <= 0:
                         self.vy = self.y + round(round(self.vpy/2)*y)
                 
-                self.point(self.vx,self.vy, self.vertexColor)
+                self.point(self.vx,self.vy, self.vertex_color)
         else:
                 pass
     
-    
+    def glColor(self, r, g, b):
+        '''Change the color glVertex() works with. The parameters must 
+        be numbers in the range of 0 to 1.'''
+
+        try:
+            self.rv = round(255*r)
+            self.gv = round(255*g)
+            self.bv = round(255*b)
+            self.vertex_color = color(self.rv,self.gv,self.bv)
+        except ValueError:
+                print('\nERROR: Please enter a number between 1 and 0\n')
+
+    def point(self, x, y, color):
+        '''Draw a point'''
+        try:
+                self.framebuffer[y][x] = color
+        except IndexError:
+                print("\nPixel is outside the limits of the image\n")
     
     def glWrite(self, file_name):
         '''Write Bitmap File'''
