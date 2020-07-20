@@ -39,7 +39,7 @@ class Bitmap(object):
 
         self.height = height
         self.width = width
-        self.frambufer = []
+        self.framebuffer = []
         self.clear_color = color(0, 0, 0)
         self.vertex_color = color(255, 255, 0)
         self.glClear()
@@ -67,7 +67,7 @@ class Bitmap(object):
     def glClear(self):
         '''Set all pixels to same color'''
 
-        self.frambufer = [
+        self.framebuffer = [
             [self.clear_color for x in range(self.width)] for y in range(self.height)
         ]
     
@@ -128,27 +128,27 @@ class Bitmap(object):
 
         #File header 14 bytes
         bmp_file.write(char('B'))
-		bmp_file.write(char('M'))
-		bmp_file.write(dword(14 + 40 + self.width * self.height))
-		bmp_file.write(dword(0))
-		bmp_file.write(dword(14 + 40))
-
+        bmp_file.write(char('M'))
+        bmp_file.write(dword(14 + 40 + self.width * self.height))
+        bmp_file.write(dword(0))
+        bmp_file.write(dword(14 + 40))
+        
         #File info 40 bytes
         bmp_file.write(dword(40))
-		bmp_file.write(dword(self.width))
-		bmp_file.write(dword(self.height))
-		bmp_file.write(word(1))
-		bmp_file.write(word(24))
-		bmp_file.write(dword(0))
-		bmp_file.write(dword(self.width * self.height * 3))
-		bmp_file.write(dword(0))
-		bmp_file.write(dword(0))
-		bmp_file.write(dword(0))
-		bmp_file.write(dword(0))
-    
+        bmp_file.write(dword(self.width))
+        bmp_file.write(dword(self.height))
+        bmp_file.write(word(1))
+        bmp_file.write(word(24))
+        bmp_file.write(dword(0))
+        bmp_file.write(dword(self.width * self.height * 3))
+        bmp_file.write(dword(0))
+        bmp_file.write(dword(0))
+        bmp_file.write(dword(0))
+        bmp_file.write(dword(0))
+
         # Pixeles, 3 bytes each
-		for x in range(self.height):
-			for y in range(self.width):
-				bmp_file.write(self.pixels[x][y])
-        
+        for x in range(self.height):
+            for y in range(self.width):
+                bmp_file.write(self.framebuffer[x][y])
+            
         bmp_file.close()
