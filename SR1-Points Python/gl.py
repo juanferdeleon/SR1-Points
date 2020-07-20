@@ -41,6 +41,12 @@ class Bitmap(object):
     def glInit(self):
         pass
 
+    def glCreateWindow(self, heigh, width):
+        '''Initialize framebuffer, img will be this size'''
+        self.heigh = heigh
+        self.width = width
+        self.glClear()
+
     def glClear(self):
         '''Set all pixels to same color'''
         self.frambufer = [
