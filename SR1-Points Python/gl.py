@@ -60,6 +60,16 @@ class Bitmap(object):
             [self.clear_color for x in range(self.width)] for y in range(self.height)
         ]
     
+    def glClearColor(self, r, g, b):
+        '''Can change the color of glClear(), parameters must be numbers in the range of 0 to 1.'''
+        try:
+            self.rc = round(255*r)
+            self.gc = round(255*g)
+            self.bc = round(255*b)
+            self.clear_color = color(self.rc, self.rg, self.rb)
+        except ValueError:
+            print('\nERROR: Please enter a number between 1 and 0\n')
+    
     def glWrite(self, file_name):
         '''Write Bitmap File'''
         
