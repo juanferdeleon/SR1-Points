@@ -30,9 +30,9 @@ def color(r,g,b):
 class Bitmap(object):
     '''Bitmap Class'''
 
-    def __init__(self, heigh, width):
+    def __init__(self, height, width):
         '''Constructor'''
-        self.heigh = heigh
+        self.height = height
         self.width = width
         self.frambufer = []
         self.clear_color = color(0, 0, 0)
@@ -41,16 +41,23 @@ class Bitmap(object):
     def glInit(self):
         pass
 
-    def glCreateWindow(self, heigh, width):
+    def glCreateWindow(self, height, width):
         '''Initialize framebuffer, img will be this size'''
-        self.heigh = heigh
+        self.height = height
         self.width = width
         self.glClear()
+    
+    def glViewPort(self, x, y, width, height):
+        '''Define the area of the image to draw on'''
+        self.x = x
+        self.y = y
+        self.vpx = width
+        slef.vpy = height
 
     def glClear(self):
         '''Set all pixels to same color'''
         self.frambufer = [
-            [self.clear_color for x in range(self.width)] for y in range(self.heigh)
+            [self.clear_color for x in range(self.width)] for y in range(self.height)
         ]
     
     def glWrite(self, file_name):
