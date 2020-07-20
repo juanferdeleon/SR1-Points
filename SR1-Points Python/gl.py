@@ -40,8 +40,8 @@ class Bitmap(object):
         self.height = height
         self.width = width
         self.framebuffer = []
-        self.clear_color = color(0, 0, 0)
-        self.vertex_color = color(255, 255, 0)
+        self.clear_color = color(255, 255, 255)
+        self.vertex_color = color(255, 0, 0)
         self.glClear()
 
     def glInit(self):

@@ -40,4 +40,17 @@ if __name__ == '__main__':
     #Set all pixels to same color
     bmp.glClear()
 
+    bmp_r = float(input("\nHex color (R): "))
+    bmp_g = float(input("\nHex color (G): "))
+    bmp_b = float(input("\nHex color (B): "))
+
+    bmp.glColor(bmp_r, bmp_g, bmp_b)
+
+    bmp.glVertex(0, 0)
+    bmp.glVertex(-1, -1)
+    bmp.glVertex(-1, 1)
+    bmp.glVertex(1, 1)
+    bmp.glVertex(1, -1)
+
+
     bmp.glWrite("test.bmp")
