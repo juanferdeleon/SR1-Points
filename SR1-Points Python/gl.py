@@ -13,18 +13,22 @@ import struct
 
 def char(c):
     '''1 Byte'''
+
     return struct.pack('=c', c.encode('ascii'))
 
 def word(w):
     '''2 Bytes'''
+
     return struct.pack('=h', w)
 
 def dword(d):
     '''4 Bytes'''
+
     return struct.pack('=l', d)
 
 def color(r,g,b):
     '''Set pixel color'''
+
     return bytes([b, g, r])
 
 class Bitmap(object):
@@ -32,6 +36,7 @@ class Bitmap(object):
 
     def __init__(self, height, width):
         '''Constructor'''
+
         self.height = height
         self.width = width
         self.frambufer = []
@@ -39,29 +44,36 @@ class Bitmap(object):
         self.glClear()
 
     def glInit(self):
+        '''Initialize any internal objects that your renderer software requires'''
+
         pass
 
     def glCreateWindow(self, height, width):
         '''Initialize framebuffer, img will be this size'''
+
         self.height = height
         self.width = width
         self.glClear()
     
     def glViewPort(self, x, y, width, height):
         '''Define the area of the image to draw on'''
+
         self.x = x
         self.y = y
         self.vpx = width
-        slef.vpy = height
+        self.vpy = height
 
     def glClear(self):
         '''Set all pixels to same color'''
+
         self.frambufer = [
             [self.clear_color for x in range(self.width)] for y in range(self.height)
         ]
     
     def glClearColor(self, r, g, b):
-        '''Can change the color of glClear(), parameters must be numbers in the range of 0 to 1.'''
+        '''Can change the color of glClear(), parameters must be numbers in the 
+        range of 0 to 1.'''
+
         try:
             self.rc = round(255*r)
             self.gc = round(255*g)
@@ -69,6 +81,27 @@ class Bitmap(object):
             self.clear_color = color(self.rc, self.rg, self.rb)
         except ValueError:
             print('\nERROR: Please enter a number between 1 and 0\n')
+    
+    def glVertex(self, x, y):
+        '''Change the color of a point on the screen. The x, y coordinates are 
+        specific to the viewport that they defined with glViewPort().'''
+
+        if x <= 1 and x>= -1 and y >= -1 and y <= 1:
+                
+                if x > 0:
+                        self.vx = self.x + round(round(self.vpx/2)*x) - 1
+                if y > 0:
+                        self.vy = self.y + round(round(self.vpy/2)*y) - 1
+                if x <= 0:
+                        self.vx = self.x + round(round(self.vpx/2)*x)
+                if y <= 0:
+                        self.vy = self.y + round(round(self.vpy/2)*y)
+                
+                self.point(self.vx,self.vy, self.vertexColor)
+        else:
+                pass
+    
+    
     
     def glWrite(self, file_name):
         '''Write Bitmap File'''
