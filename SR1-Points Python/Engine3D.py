@@ -23,27 +23,56 @@ if __name__ == '__main__':
     #Initialize bmp Object
     bmp = glInit()
 
-    #Set bmp width and height
-    bmp_width = int(input("\nIngrese ancho de la imagen: "))
-    bmp_height = int(input("\nIngrese alto de la imagen: "))
+    #Input bmp width and height
+    while True:
+        bmp_width = input("\nIngrese ancho de la imagen: ")
+        bmp_height = input("\nIngrese alto de la imagen: ")
+        try:
+            bmp_width = int(bmp_width)
+            bmp_height = int(bmp_height)
+            break
+        except ValueError:
+            print("\n\nERROR: Por favor ingrese un numero entero.\n")
 
+    #Set bmp width and height
     bmp.glCreateWindow(bmp_height, bmp_width)
 
-    #Set bmp Viewport width and height
-    bmp_viewport_x = int(input("\nIngrese coordenada X para el Viewport"))
-    bmp_viewport_y = int(input("\nIngrese coordenada Y para el Viewport"))
-    bmp_viewport_width = int(input("\nIngrese ancho del ViewPort: "))
-    bmp_viewport_height = int(input("\nIngrese alto del ViewPort: "))
+    #Input bmp Viewport width and height
+    while True:
+        bmp_viewport_x = input("\nIngrese coordenada X para el Viewport: ")
+        bmp_viewport_y = input("\nIngrese coordenada Y para el Viewport: ")
+        bmp_viewport_width = input("\nIngrese ancho del ViewPort: ")
+        bmp_viewport_height = input("\nIngrese alto del ViewPort: ")
+        try:
+            bmp_viewport_x = int(bmp_viewport_x)
+            bmp_viewport_y = int(bmp_viewport_y)
+            bmp_viewport_width = int(bmp_viewport_width)
+            bmp_viewport_height = int(bmp_viewport_height)
+            break
+        except ValueError:
+            print("\n\nERROR: Por favor ingrese un numero entero.\n")
 
+    #Set bmp Viewport width and height
     bmp.glViewPort(bmp_viewport_x, bmp_viewport_y, bmp_viewport_height, bmp_viewport_width)
 
     #Set all pixels to same color
     bmp.glClear()
 
-    bmp_r = float(input("\nHex color (R): "))
-    bmp_g = float(input("\nHex color (G): "))
-    bmp_b = float(input("\nHex color (B): "))
+    #Input glVertex Colors
+    while True:
+        bmp_r = input("\nHex color (R): ")
+        bmp_g = input("\nHex color (G): ")
+        bmp_b = input("\nHex color (B): ")
+        try:
+            bmp_r = float(bmp_r)
+            bmp_g = float(bmp_g)
+            bmp_b = float(bmp_b)
+            if 0 <= bmp_g <= 1 and 0 <= bmp_g <= 1 and 0 <= bmp_b <= 1:
+                break
+        except ValueError:
+            print("\n\nERROR: Por favor ingrese un numero entre 0 y 1.\n")
 
+    #Input glVertex Colors
     bmp.glColor(bmp_r, bmp_g, bmp_b)
 
     bmp.glVertex(0, 0)
@@ -52,5 +81,5 @@ if __name__ == '__main__':
     bmp.glVertex(1, 1)
     bmp.glVertex(1, -1)
 
-
+    #Output BMP
     bmp.glWrite("test.bmp")
